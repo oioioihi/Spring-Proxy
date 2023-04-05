@@ -36,7 +36,7 @@ public class BeanPostProcessorTest {
         @Bean
         public AToBPostProcessor helloPostProcessor() {
             return new AToBPostProcessor();
-        }
+        } //BeanPostProcessor가 우선적을 빈으로 등록됨
     }
 
     @Slf4j
