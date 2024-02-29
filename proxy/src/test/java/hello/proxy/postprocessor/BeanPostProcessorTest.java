@@ -30,13 +30,15 @@ public class BeanPostProcessorTest {
     static class BeanPostProcessorConfig {
         @Bean(name = "beanA")
         public A a() {
+            log.info("실행 순서 : 2");
             return new A();
         }
 
         @Bean
         public AToBPostProcessor helloPostProcessor() {
+            log.info("실행 순서 : 1");
             return new AToBPostProcessor();
-        } //BeanPostProcessor가 우선적을 빈으로 등록됨
+        } //BeanPostProcessor가 우선적으로 빈으로 등록됨
     }
 
     @Slf4j
@@ -60,6 +62,7 @@ public class BeanPostProcessorTest {
         public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
             log.info("beanName={} bean={}", beanName, bean);
             if (bean instanceof A) {
+                log.info("실행 순서 : 3");
                 return new B();
             }
             return bean;
