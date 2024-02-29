@@ -13,13 +13,13 @@ public class InterfaceProxyConfig {
 
     @Bean
     public OrderControllerV1 orderController(LogTrace logTrace) {
-        OrderControllerV1Impl controllerImpl = new OrderControllerV1Impl(orderService(logTrace));
+        OrderControllerV1Impl controllerImpl = new OrderControllerV1Impl(orderService(logTrace));// 실제 구현체가 다시 프록시를 호출해야한다.
         return new OrderControllerInterfaceProxy(controllerImpl, logTrace);
     }
 
     @Bean
     public OrderServiceV1 orderService(LogTrace logTrace) {
-        OrderServiceV1Impl serviceImpl = new OrderServiceV1Impl(orderRepository(logTrace));
+        OrderServiceV1Impl serviceImpl = new OrderServiceV1Impl(orderRepository(logTrace));// 실제 구현체가 다시 프록시를 호출해야한다.
         return new OrderServiceInterfaceProxy(serviceImpl, logTrace);
     }
 
