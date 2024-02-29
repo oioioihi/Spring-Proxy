@@ -21,6 +21,7 @@ public class ProxyPatternTest {
         RealSubject realSubject = new RealSubject();
         CacheProxy cacheProxy = new CacheProxy(realSubject);
         ProxyPatternClient client = new ProxyPatternClient(cacheProxy);
+        // Client -> cacheProxy -> RealSubject의 런타임 객체 의존관계가 이루어진다.
         client.execute();
         client.execute();
         client.execute();
