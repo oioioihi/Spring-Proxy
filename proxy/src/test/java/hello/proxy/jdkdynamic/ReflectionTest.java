@@ -37,7 +37,7 @@ public class ReflectionTest {
         Hello target = new Hello();
         //callA 메서드 정보
         Method methodCallA = classHello.getMethod("callA");
-        Object result1 = methodCallA.invoke(target);
+        Object result1 = methodCallA.invoke(target); // target 인스턴스의 callA()메서드를 찾아서 호출한다.
         log.info("result1={}", result1);
 
         //callB 메서드 정보
