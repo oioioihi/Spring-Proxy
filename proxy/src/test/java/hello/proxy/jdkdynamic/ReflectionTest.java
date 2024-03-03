@@ -3,7 +3,6 @@ package hello.proxy.jdkdynamic;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @Slf4j
@@ -24,6 +23,10 @@ public class ReflectionTest {
         String result2 = target.callB(); //호출하는 메서드가 다음
         log.info("result={}", result2);
         //공통 로직2 종료
+
+        /**
+         * target.callA()와 target.callB() 부분을 동적으로 다룰 수 있을까? -> Reflection으로 클래스나 메서드의 메타정보를 사용해서 동적으로 호출하는 메서드를 변경핫우 있다.
+         */
     }
 
     @Test
@@ -68,6 +71,7 @@ public class ReflectionTest {
             log.info("callA");
             return "A";
         }
+
         public String callB() {
             log.info("callB");
             return "B";
