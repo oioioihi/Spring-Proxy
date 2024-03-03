@@ -57,6 +57,11 @@ public class ReflectionTest {
 
         Method methodCallB = classHello.getMethod("callB");
         dynamicCall(methodCallB, target);
+
+        /**
+         * 정적인 target.callA(), target.callB() 코드를 리플렉션을 사용해서 'Method'라는 메타정보로 추상화했다.
+         * 하지만, Reflection은 컴파일시점에서 에러를 잡을 수 없고, 런타임에서 에러가 터지기 때문에 주의해야한다.
+         */
     }
 
     private void dynamicCall(Method method, Object target) throws Exception {
