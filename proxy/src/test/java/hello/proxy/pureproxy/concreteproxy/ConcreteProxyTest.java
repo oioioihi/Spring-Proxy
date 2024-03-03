@@ -9,6 +9,7 @@ public class ConcreteProxyTest {
 
     @Test
     void noProxy() {
+        // 호출 순서 : client -> ConcreteLogic
         ConcreteLogic concreteLogic = new ConcreteLogic();
         ConcreteClient client = new ConcreteClient(concreteLogic);
         client.execute();
@@ -16,6 +17,7 @@ public class ConcreteProxyTest {
 
     @Test
     void addProxy() {
+        // 호출 순서 : client -> TimeProxy -> ConcreteLogic
         ConcreteLogic concreteLogic = new ConcreteLogic();
         TimeProxy timeProxy = new TimeProxy(concreteLogic);
         ConcreteClient client = new ConcreteClient(timeProxy);
