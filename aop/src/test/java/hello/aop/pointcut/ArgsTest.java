@@ -9,6 +9,10 @@ import java.lang.reflect.Method;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+/**
+ * args : 인자의 타입을 기준으로 조인 포인트로 매칭
+ */
 public class ArgsTest {
 
     Method helloMethod;
@@ -42,8 +46,8 @@ public class ArgsTest {
     }
 
     /**
-     * execution(* *(java.io.Serializable)): 메서드의 시그니처로 판단 (정적)
-     * args(java.io.Serializable): 런타임에 전달된 인수로 판단 (동적)
+     * execution(* *(java.io.Serializable)): 개발자가 개발한 메서드의 시그니처로 판단 (정적)
+     * args(java.io.Serializable): 런타임시점에 전달된 파라미터로 판단 (동적)
      */
     @Test
     void argsVsExecution() {
