@@ -11,6 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
+/**
+ * 클래스에 붙여진 애노테이션을 보고 join point로 판단
+ *
+ * @target : 부모클래스의 메서드까지 advice를 적용시킨다.
+ * @within : 자기 자신의 클래스에 정의된 메서드들에만 advice를 적용시킨다.
+ */
 @Slf4j
 @Import({AtTargetAtWithinTest.Config.class})
 @SpringBootTest
@@ -32,10 +38,12 @@ public class AtTargetAtWithinTest {
         public Parent parent() {
             return new Parent();
         }
+
         @Bean
         public Child child() {
             return new Child();
         }
+
         @Bean
         public AtTargetAtWithinAspect atTargetAtWithinAspect() {
             return new AtTargetAtWithinAspect();
@@ -43,12 +51,14 @@ public class AtTargetAtWithinTest {
     }
 
     static class Parent {
-        public void parentMethod(){} //부모에만 있는 메서드
+        public void parentMethod() {
+        } //부모에만 있는 메서드
     }
 
     @ClassAop
     static class Child extends Parent {
-        public void childMethod(){}
+        public void childMethod() {
+        }
     }
 
     @Slf4j
