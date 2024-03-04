@@ -13,7 +13,6 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.NameMatchMethodPointcut;
 
-import java.awt.*;
 import java.lang.reflect.Method;
 
 @Slf4j
@@ -23,7 +22,7 @@ public class AdvisorTest {
     void advisorTest1() {
         ServiceInterface target = new ServiceImpl();
         ProxyFactory proxyFactory = new ProxyFactory(target); //프록시 팩토리 생성
-        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(Pointcut.TRUE, new TimeAdvice()); //어드바이저 생성 / Pointcut.TRUE는 항상 트루
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(Pointcut.TRUE, new TimeAdvice()); //어드바이저 생성 / Pointcut.TRUE는 항상 advice를 적용
         proxyFactory.addAdvisor(advisor); // 어드바이저 추가
         ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy(); //프록시 꺼내기
 
@@ -34,8 +33,8 @@ public class AdvisorTest {
     @Test
     @DisplayName("직접 만든 포인트컷")
     void advisorTest2() {
-        ServiceInterface target = new ServiceImpl();
-        ProxyFactory proxyFactory = new ProxyFactory(target);
+        ServiceInterface target = new ServiceImpl(); //target 클래스
+        ProxyFactory proxyFactory = new ProxyFactory(target); // proxy 인스턴스
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(new MyPointcut(), new TimeAdvice());
         proxyFactory.addAdvisor(advisor);
         ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
@@ -64,12 +63,12 @@ public class AdvisorTest {
         @Override
         public ClassFilter getClassFilter() {
             return ClassFilter.TRUE;
-        }
+        } //클래스에 필터를 걸때 사용
 
         @Override
         public MethodMatcher getMethodMatcher() {
             return new MyMethodMatcher();
-        }
+        } //메서드에 필터를 걸때 사용
     }
 
     static class MyMethodMatcher implements MethodMatcher {

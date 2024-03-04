@@ -5,13 +5,12 @@ import hello.proxy.common.service.ConcreteService;
 import hello.proxy.common.service.ServiceImpl;
 import hello.proxy.common.service.ServiceInterface;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.AopUtils;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class ProxyFactoryTest {
@@ -67,5 +66,12 @@ public class ProxyFactoryTest {
         assertThat(AopUtils.isJdkDynamicProxy(proxy)).isFalse();
         assertThat(AopUtils.isCglibProxy(proxy)).isTrue();
     }
+
+    /**
+     * Proxy Factory의 기술 선택 방법
+     * target에 인터페이스가 있으면 : JDK 동적 프록시
+     * target에 인터페이스가 없으면 : CGLIB
+     * proxyTargetClass=true : CGLIB
+     */
 
 }

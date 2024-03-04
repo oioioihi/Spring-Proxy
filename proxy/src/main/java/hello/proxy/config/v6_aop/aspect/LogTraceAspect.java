@@ -7,8 +7,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
-import java.lang.reflect.Method;
-
 @Slf4j
 @Aspect
 public class LogTraceAspect {
@@ -19,8 +17,16 @@ public class LogTraceAspect {
         this.logTrace = logTrace;
     }
 
-    @Around("execution(* hello.proxy.app..*(..))")
+    /**
+     * advisor를 만듬
+     *
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
+    @Around("execution(* hello.proxy.app..*(..))")  // point cut
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
+        // advice 로직
         TraceStatus status = null;
         try {
             String message = joinPoint.getSignature().toShortString();

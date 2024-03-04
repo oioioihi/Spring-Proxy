@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
+/**
+ * Advice는 프록시에 적용하는 부가 기능 로직이다.
+ */
 @Slf4j
 public class TimeAdvice implements MethodInterceptor {
     @Override

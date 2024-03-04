@@ -22,7 +22,7 @@ public class LogTraceFilterHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        //메서드 이름 필터
+        //메서드 이름 필터 : 메서드 이름이 조건에 맞으면 프록시 호출
         String methodName = method.getName();
         if (!PatternMatchUtils.simpleMatch(patterns, methodName)) {
             return method.invoke(target, args);
