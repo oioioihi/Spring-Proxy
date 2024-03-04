@@ -6,6 +6,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 
+/**
+ * advice에 순서를 지정하고 싶다면?
+ * ->  advice단위가 아닌 @Aspect가 달린 클래스 단위로 순서가 보장되기 때문에, static class로 내부 클래스를 만들어 @Order를 사용해 순서를 지정 해야한다.
+ */
 @Slf4j
 public class AspectV5Order {
 
